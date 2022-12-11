@@ -60,19 +60,22 @@ class MainActivity : AppCompatActivity() {
             lemonadeState = SQUEEZE
             lemonSize = lemonTree.pick()
             squeezeCount = 0
+            setViewElements()
         } else if(lemonadeState == SQUEEZE) {
             squeezeCount += 1
             lemonSize -= 1
             if(lemonSize == 0) {
                 lemonadeState = DRINK
                 lemonSize = -1
+                setViewElements()
             }
         } else if(lemonadeState == DRINK) {
             lemonadeState = RESTART
+            setViewElements()
         } else {
             lemonadeState = SELECT
+            setViewElements()
         }
-        setViewElements()
     }
 
     private fun setViewElements() {
