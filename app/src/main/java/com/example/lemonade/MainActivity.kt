@@ -1,5 +1,6 @@
 package com.example.lemonade
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -24,18 +25,16 @@ class MainActivity : AppCompatActivity() {
     private var lemonadeState = SELECT
     private var lemonSize = -1
     private var squeezeCount = -1
-
     private var lemonTree = LemonTree()
-    private var lemonImage: ImageView? = findViewById(R.id.image_lemon_state)
+    private var lemonImage: ImageView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         // === DO NOT ALTER THE CODE IN THE FOLLOWING IF STATEMENT ===
         if (savedInstanceState != null) {
-            lemonadeState = savedInstanceState.getString(LEMONADE_STATE, "select")
+            lemonadeState = savedInstanceState.getString(LEMONADE_STATE, SELECT)
             lemonSize = savedInstanceState.getInt(LEMON_SIZE, -1)
             squeezeCount = savedInstanceState.getInt(SQUEEZE_COUNT, -1)
         }
@@ -91,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             }
             DRINK -> {
                 textAction.setText(R.string.lemon_drink)
-                lemonImage?.setImageResource(R.drawable.lemon_restart)
+                lemonImage?.setImageResource(R.drawable.lemon_drink)
             }
             else -> {
                 textAction.setText(R.string.lemon_empty_glass)
